@@ -10,29 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Out
-        uses: actions/checkout@v2.4.0
-        with:
-          persist-credentials: false
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          npm ci
+          npm run build
 
-      - name: Installing Dependencies
-        run: npm ci
-
-      # - name: Linting
-      #   run: npm test
-
-      - name: Building
-        run: npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          folder: build
-          branch: gh-pages
-          clean: true
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
