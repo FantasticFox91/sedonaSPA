@@ -1,0 +1,138 @@
+.header {
+  display: flex;
+  max-height: 56px;
+  align-items: center;
+  padding: 0 20px;
+
+  @media (min-width: $tablet-width) {
+    justify-content: center;
+  }
+}
+
+.header picture {
+  margin-left: auto;
+}
+
+.header__list {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  top: -100%;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  transition: $basic-animation;
+
+  &--open {
+    @media (max-width: 767px) {
+      top: 0;
+      background-color: $main-color;
+
+      & .header__item--active {
+        color: $white-color;
+      }
+    }
+  }
+
+  @media (min-width: $tablet-width) {
+    position: static;
+    flex-direction: row;
+    display: flex;
+  }
+}
+
+.header__item {
+  @media (max-width: 767px) {
+    width: 100%;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 700;
+    color: $white-color;
+    text-align: center;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(1, 1, 1, 0.2);
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  @media (min-width: $tablet-width) {
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 700;
+  }
+
+  &--active {
+    color: $active-link-color;
+  }
+}
+
+.header__item:nth-child(2n):not(:last-child) {
+  @media (min-width: $tablet-width) {
+    margin-right: 180px;
+  }
+}
+
+.header__button {
+  position: relative;
+  margin-left: auto;
+  width: 23px;
+  height: 22px;
+  border: none;
+  background-color: transparent;
+  order: 2;
+  transition: $basic-animation;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 4px;
+    background-color: $main-color;
+    box-shadow: 0 9px 0 0 $main-color;
+    content: "";
+  }
+
+  &::before {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 23px;
+    height: 4px;
+    background-color: $main-color;
+    content: "";
+  }
+
+  &--open {
+    z-index: 2;
+
+    &::after {
+      background-color: $white-color;
+      transform: rotate(45deg);
+      box-shadow: none;
+    }
+
+    &::before {
+      background-color: $white-color;
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+
+  @media (min-width: 767px) {
+    display: none;
+  }
+}
+
+.logo {
+  @media (min-width: $tablet-width) {
+    position: absolute;
+  }
+}
